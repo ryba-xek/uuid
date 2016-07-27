@@ -128,7 +128,11 @@ func (o *Uuid) Scan(pSrc interface{}) error {
 		return o.UnmarshalText([]byte(src))
 
 	case []byte:
-		return o.UnmarshalBinary(src)
+		if len(src) != o.Size() {
+			return o.UnmarshalText([]byte(src))
+		} else {
+			return o.UnmarshalBinary(src)
+		}
 
 	default:
 		return fmt.Errorf("uuid.Uuid.Scan: cannot scan type %T into Uuid", pSrc)

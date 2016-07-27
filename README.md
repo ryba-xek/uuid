@@ -1,3 +1,6 @@
+Fixed unmarshaling []byte with other lengths than 16 bytes.
+
+
 Go UUID implementation
 ========================
 

@@ -86,12 +86,12 @@ func (o *Uuid) UnmarshalBinary(pBytes []byte) error {
 // MarshalText implements the encoding.TextMarshaler interface. It will marshal
 // text into one of the known formats, if you have changed to a custom Format
 // the text
-func (o Uuid) MarshalText() ([]byte, error) {
+func (o Uuid) MarshalText() (string, error) {
 	f := FormatCanonical
 	if defaultFormats[printFormat] {
 		f = printFormat
 	}
-	return []byte(strings.ToLower(string(format(o.Bytes(), string(f))))), nil
+	return strings.ToLower(string(format(o.Bytes(), string(f)))), nil
 }
 
 // UnmarshalText implements the encoding.TextUnmarshaler interface. It will
